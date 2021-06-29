@@ -6,6 +6,7 @@ import { serialize } from '@pulumi/pulumi/runtime';
 
 const defaultRepoSettings: github.RepositoryArgs = {
   archiveOnDestroy: true,
+  deleteBranchOnMerge: true,
   hasDownloads: false,
   hasIssues: false,
   hasProjects: false,
