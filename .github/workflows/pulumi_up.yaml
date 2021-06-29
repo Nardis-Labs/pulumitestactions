@@ -31,8 +31,8 @@ jobs:
           stack-name: trsdev
           cloud-url: gs://trspulumitest
           diff: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
           GITHUB_OWNER: Nardis-Labs
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
