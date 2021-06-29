@@ -25,5 +25,7 @@ jobs:
           command: preview
           stack-name: trsdev
           cloud-url: gs://trspulumitest
+          comment-on-pr: true
+          diff: true
         env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
