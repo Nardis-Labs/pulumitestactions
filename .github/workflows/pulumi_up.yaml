@@ -1,0 +1,32 @@
+name: Pulumi
+on:
+  push:
+    branches:
+      - master
+jobs:
+  preview:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Setup gcloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+          export_default_credentials: true
+
+      - run: npm install
+
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: trsdev
+          cloud-url: gs://trspulumitest
+          diff: true
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
