@@ -10,7 +10,7 @@ const defaultRepoSettings: github.RepositoryArgs = {
   hasIssues: false,
   hasProjects: false,
   hasWiki: false,
-  visibility: 'private',
+  visibility: 'public',
   vulnerabilityAlerts: true,
 };
 
