@@ -1,0 +1,4 @@
+name: github-settings
+runtime: nodejs
+description: Management of settings for Nardis-Labs's GitHub Enterprise Cloud and related
+  organizations.
