@@ -1,6 +1,8 @@
 name: Pulumi
 on:
-  - pull_request
+  push:
+    branches:
+      - master
 jobs:
   preview:
     name: Preview
@@ -22,7 +24,7 @@ jobs:
 
       - uses: pulumi/actions@v3
         with:
-          command: preview
+          command: up
           stack-name: trsdev
           cloud-url: gs://trspulumitest
           comment-on-pr: true

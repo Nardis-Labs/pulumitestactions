@@ -22,11 +22,11 @@ export const allEmployees: Team = {
 const engineering: Team = {
   name: 'eng',
   parent: allEmployees,
-  groups: [
-    'dept-coredevelopment',
-    'dept-reliability-engineering',
-    'software-dev',
-  ],
+  // groups: [
+  //   'dept-coredevelopment',
+  //   'dept-reliability-engineering',
+  //   'software-dev',
+  // ],
   repositories: repoAccess(sweng.default, Permission.Write),
 };
 
@@ -42,11 +42,6 @@ const swEngRepoApprovers: Team = {
   users: ['sullivtr'], // TODO(sullivtr) create an AD group for this?
 };
 
-const cdnDev: Team = {
-  name: 'cdn-dev',
-  parent: softwareEngineering,
-  groups: ['dept-coredevelopment'],
-};
 
 const platformDev: Team = {
   name: 'platform-dev',
@@ -54,52 +49,12 @@ const platformDev: Team = {
   groups: ['dept-product-dev'],
 };
 
-const computeDev: Team = {
-  name: 'compute-dev',
-  parent: softwareEngineering,
-};
-
-const ui: Team = {
-  name: 'ui',
-  parent: softwareEngineering,
-  description: 'Formerly known as "The Loud Table"',
-};
-
-// Ops
-const sre: Team = {
-  name: 'sre',
-  parent: engineering,
-  groups: ['dept-reliability-engineering'],
-};
-
-const syseng: Team = {
-  name: 'syseng',
-  parent: engineering,
-  groups: ['dept-platform-syseng'],
-};
-
-// Contractor teams
-const oneConvergence: Team = {
-  name: 'one-convergence',
-  // repositories: {
-  //   'Nardis-Labs/sp-envoy': Permission.Write,
-  //   'Nardis-Labs/k8s-sig': Permission.Write,
-  // },
-  groups: ['bitbucket-oneconverge'],
-};
-
 export default [
   allEmployees,
   engineering,
   softwareEngineering,
   swEngRepoApprovers,
-  cdnDev,
   platformDev,
-  computeDev,
-  ui,
-  sre,
-  syseng,
-  oneConvergence,
 ];
 
 // A closed team is visible to all members of the organization
