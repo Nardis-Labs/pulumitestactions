@@ -3,9 +3,12 @@ on:
   push:
     branches:
       - master
+
+permissions: write-all
+
 jobs:
-  preview:
-    name: Preview
+  up:
+    name: Pulumi Up
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,4 +34,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_OWNER: Nardis-Labs
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
