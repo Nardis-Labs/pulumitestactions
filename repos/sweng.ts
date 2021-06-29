@@ -2,7 +2,7 @@ import { OrgName } from '../orgs';
 import { Repository } from './settings';
 
 export const PulumiTest: Repository = {
-  name: 'pulumi-test-updated',
+  name: 'pulumi-test',
   slug: 'pulumi-test-updated',
   org: OrgName.StackPath,
   description: 'pulumi test existing',
