@@ -33,20 +33,20 @@ const defaultMainBranchProtection: github.BranchProtectionArgs = {
 
 export function ApplyRepos() {
   return sweng.default.map((repo) => {
-    const name = repo.name?.toString() || ''; // TODO(sullivtr) get some validation before this to enforce a name
+    const slug = repo.slug?.toString() || '';
 
-    const r = new github.Repository(`${repo.org}-${name}`, {
+    const r = new github.Repository(`${repo.org}-${slug}`, {
       ...defaultRepoSettings,
       ...repo,
     });
-    pulumi.all([r.id, r.name]).apply(([id, name]) => {
-      new github.BranchProtection(`${name}Main`, {
+    pulumi.all([r.id]).apply(([id]) => {
+      new github.BranchProtection(`${slug}Main`, {
         ...defaultMainBranchProtection,
         ...repo.mainBranchProtection,
         ...{ repositoryId: id },
       });
       repo.branchProtections?.forEach((v, k) => {
-        new github.BranchProtection(`${name}${k}`, {
+        new github.BranchProtection(`${slug}${k}`, {
           ...v,
           ...{ repositoryId: id },
         });

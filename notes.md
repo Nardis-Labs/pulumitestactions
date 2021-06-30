@@ -1,0 +1,2 @@
+* The name being passed into the repo args is a name for the Pulumi resource itself, and is used to generatet he ID for the resource. This means that a change to a repos name is destructive and will replace the repo altogether. 
+* 
