@@ -4,35 +4,24 @@ on:
     branches:
       - master
 
-permissions: write-all
+# permissions: write-all
 
 jobs:
   up:
-    name: Pulumi Up
+    name: up
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
+      - uses: actions/checkout@v1
 
-      - name: Setup gcloud SDK
-        uses: google-github-actions/setup-gcloud@master
+      - id: run pulumi
+        uses: ./.github/actions/pulumi
         with:
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: ${{ secrets.GKE_PROJECT }}
-          export_default_credentials: true
-
-      - run: npm install
-
-      - uses: pulumi/actions@v3
-        with:
-          command: up
-          stack-name: trsdev
-          cloud-url: gs://trspulumitest
-          diff: true
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
-          GITHUB_OWNER: Nardis-Labs
-          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+          gcs-sa-key: ${{ secrets.GC_SA_KEY }}
+          gc-project: ${{ secrets.GC_PROJECT }}
+          pulumi-backend-passphrase: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+          pulumi-command: up
+          stack-name: trsdev
+          gcs-url: gs://trspulumitest
+              
+
