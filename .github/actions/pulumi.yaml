@@ -1,0 +1,77 @@
+name: 'Hello WorlRun Pulumi'
+inputs:
+  github-token:  # github PAT
+    description: 'Github token to use for the action'
+    required: true
+    default: ''
+  gcs-sa-key:  # google cloud service account key
+    description: 'Service account key to authenticate with google cloud'
+    required: true
+    default: ''
+  gc-project:  # google cloud project name
+    description: 'Google cloud project where the GCS bucket lives'
+    required: true
+    default: ''
+  pulumi-backend-passphrase:  # the passphrase used for accessing the GCS backend
+    description: 'The passphrase used for accessing the GCS backend'
+    required: true
+    default: ''
+  pulumi-command:  # 
+    description: 'The pulumi command to use: `preview` or `up`'
+    required: true
+    default: 'preview'
+  stack-name:  # 
+    description: 'The name of the pulumi stack'
+    required: true
+    default: ''
+  gcs-url:  # 
+    description: 'The url for the GCS bucket used for the pulumi remote state backend'
+    required: true
+    default: 'gs://sp-pulumi-github-admin'
+# outputs:
+#   random-number:
+#     description: "Pulumi output"
+#     value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo Running pulumi...
+      shell: bash
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Setup gcloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        # google cloud service account key (must be full json key)
+        service_account_key: ${{ secrets.GC_SA_KEY }} 
+        # google cloud project where the GCS bucket lives
+        project_id: ${{ secrets.GC_PROJECT }} 
+        export_default_credentials: true
+
+    - name: Run pulumi
+      uses: pulumi/actions@v3
+      with:
+        command: {{ inputs.pulumi-command }}
+        stack-name: {{ inputs.stack-name }}
+        # This is the GCS bucket URL
+        cloud-url: {{ inputs.gcs-url }}
+        diff: true
+      env:
+        # This must be a PAT with all access required by the GH admin pulumi template. 
+        # This is used by the github pulumi provider.
+        GITHUB_TOKEN: ${{ inputs.github-token }} 
+        # name of the github organization
+        GITHUB_OWNER: stackpath 
+        # This is a passphrase that is created when initializing the GCS backend for Pulumi
+        PULUMI_CONFIG_PASSPHRASE: ${{ inputs.pulumi-backend-passphrase }}
+
