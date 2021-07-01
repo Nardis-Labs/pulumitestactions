@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - id: run pulumi
+      - id: run-pulumi
         uses: ./.github/actions/pulumi
         with:
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
