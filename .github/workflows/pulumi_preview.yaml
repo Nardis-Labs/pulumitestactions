@@ -1,6 +1,11 @@
 name: Pulumi
 on:
-  - pull_request
+  pull_request:
+    branches:
+     - '*'
+  push:
+    branches:
+      - master
 jobs:
   preview:
     name: Preview
@@ -20,7 +25,8 @@ jobs:
 
       - run: npm install
 
-      - uses: pulumi/actions@v3
+      - name: run pulumi preview
+        uses: pulumi/actions@v3
         with:
           command: preview
           stack-name: trsdev
@@ -30,4 +36,18 @@ jobs:
           diff: true
         env:
           GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+
+      - name: run pulumi up
+        uses: pulumi/actions@v3
+        if: ${{ github.ref == 'ref/heads/main' }}
+        with:
+          command: up
+          stack-name: trsdev
+          cloud-url: gs://trspulumitest
+          diff: true
+          github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
+          GITHUB_OWNER: Nardis-Labs
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
