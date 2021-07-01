@@ -40,7 +40,7 @@ jobs:
 
       - name: run pulumi up
         uses: pulumi/actions@v3
-        if: ${{ github.ref == 'ref/heads/main' }}
+        if: ${{ github.ref == 'ref/heads/master' }}
         with:
           command: up
           stack-name: trsdev
