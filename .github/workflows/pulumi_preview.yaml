@@ -8,7 +8,7 @@ on:
       - 'master'
 jobs:
   preview:
-    name: Preview
+    name: Run Pulumi
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,7 +38,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
 
-      - uses: pulumi/actions@v3
+      - name: run pulumi up
+        uses: pulumi/actions@v3
+        # only run this step if we are pushing to master
         if: ${{ github.ref == 'refs/heads/master'}}
         with:
           command: up
