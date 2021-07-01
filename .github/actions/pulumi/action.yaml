@@ -1,4 +1,4 @@
-name: 'Hello WorlRun Pulumi'
+name: 'Run Pulumi'
 inputs:
   github-token:  # github PAT
     description: 'Github token to use for the action'
