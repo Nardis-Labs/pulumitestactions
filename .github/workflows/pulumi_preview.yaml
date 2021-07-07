@@ -37,7 +37,7 @@ jobs:
         with:
           command: preview
           stack-name: ${{ env.PULUMI_STACK }}
-          cloud-url: ${{{ env.PULUMI_CLOUD_URL }}}
+          cloud-url: ${{ env.PULUMI_CLOUD_URL }}
           diff: true
 
       - name: run pulumi up
@@ -47,5 +47,5 @@ jobs:
         with:
           command: up
           stack-name: ${{ env.PULUMI_STACK }}
-          cloud-url: ${{{ env.PULUMI_CLOUD_URL }}}
+          cloud-url: ${{ env.PULUMI_CLOUD_URL }}
           diff: true
