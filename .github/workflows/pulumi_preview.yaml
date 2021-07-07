@@ -37,8 +37,8 @@ jobs:
           comment-on-pr: true
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
           diff: true
+        env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
-
 
       - name: run pulumi up
         uses: pulumi/actions@v3
@@ -49,5 +49,6 @@ jobs:
           stack-name: trsdev
           diff: true
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
+        env:
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
 
