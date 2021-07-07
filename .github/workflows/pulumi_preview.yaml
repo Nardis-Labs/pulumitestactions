@@ -35,7 +35,6 @@ jobs:
         with:
           command: preview
           stack-name: trsdev
-          cloud-url: gs://trspulumitest
           comment-on-pr: true
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
           diff: true
@@ -47,6 +46,5 @@ jobs:
         with:
           command: up
           stack-name: trsdev
-          cloud-url: gs://trspulumitest
           diff: true
           github-token: ${{ secrets.PULUMI_GITHUB_TOKEN }}
