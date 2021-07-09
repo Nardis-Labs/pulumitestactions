@@ -8,8 +8,6 @@ on:
       - 'master'
 env:
   GITHUB_TOKEN: ${{ secrets.PULUMI_GITHUB_TOKEN }}
-  PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_BACKEND_PASSPHRASE_FUNTIMES }}
-  PULUMI_BACKEND_PASSPHRASE: ${{ secrets.PULUMI_BACKEND_PASSPHRASE }}
   PULUMI_CLOUD_URL: gs://trspulumitest
   PULUMI_STACK: funtimes
   GITHUB_OWNER: Nardis-Labs
