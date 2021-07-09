@@ -1,5 +1,5 @@
 encryptionsalt: v1:DnKw2mbANhc=:v1:+S3D2+1vvH5IF68n:kDUgIsmWL2IwwLlv7zwpoZ6U+yuCKw==
 config:
-  github:owner: Nardis-Labs
   github-settings:dbPassword:
-    secure: v1:rCcecgx7w5Q5+ICV:UaL1P4PR/KAIXYcONaZ6Z40WhuZsHw==
+    secure: v1:bzX2NbPPc3Dx62gD:cipyTE089N3qS/xxKJQ0QEckVgrAqg==
+  github:owner: Nardis-Labs
