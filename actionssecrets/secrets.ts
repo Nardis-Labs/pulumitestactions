@@ -8,7 +8,7 @@ const cfg = new pulumi.Config()
 export const PulumiPassphraseSecret: ActionSecret = {
   pulumiSlug: 'pulumi-backend-passphrase',
   secretName: 'PULUMI_BACKEND_PASSPHRASE_FUNTIMES',
-  plaintextValue: cfg.require("dbPassword"),
+  plaintextValue: cfg.requireSecret("dbPassword"),
   repository: 'pulumitestactions',
   org: OrgName.StackPath
 };
