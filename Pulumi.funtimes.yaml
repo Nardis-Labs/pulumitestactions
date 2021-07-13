@@ -1,0 +1,5 @@
+secretsprovider: gcpkms://projects/trspulumitest/locations/global/keyRings/pulumitest/cryptoKeys/pulumitest
+encryptedkey: CiQAorHEYDuWR8/LiGEkWbzEaiOkuI5kdr+FDrxeuCyoqhSLgeESSAAxPJ3A8sAlBfokqRPkW+Hdz4G+PUSXQTy6z8v0W5huFD4lA0pLfJ5HVCjCxVDovEzW2ht6Xv6MdcJrrtn4DpYWeiKTihe/ng==
+config:
+  github-settings:dbPassword:
+    secure: v1:pzm1Oy0Yl+hPN+Gp:fVVd96Nx2JJZIrAAt/HPg+QXI75sgBsmzF4=

@@ -1,5 +1,5 @@
 import { ApplyRepos } from './repos';
-import { ApplyActionSecrets } from './actions';
+import { ApplyActionSecrets } from './actionssecrets';
 import * as github from '@pulumi/github';
 // import { teams } from "./teams"
 
