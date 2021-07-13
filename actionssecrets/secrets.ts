@@ -13,4 +13,20 @@ export const PulumiPassphraseSecret: ActionSecret = {
   org: OrgName.StackPath
 };
 
-export default [PulumiPassphraseSecret];
+export const Test2: ActionSecret = {
+  pulumiSlug: 'test2',
+  secretName: 'TEST_2',
+  plaintextValue: cfg.requireSecret("dbPassword"),
+  repository: 'pulumitestactions',
+  org: OrgName.StackPath
+};
+
+export const Test3: ActionSecret = {
+  pulumiSlug: 'test3',
+  secretName: 'TEST_3',
+  plaintextValue: cfg.requireSecret("dbPassword"),
+  repository: 'pulumitestactions',
+  org: OrgName.StackPath
+};
+
+export default [PulumiPassphraseSecret, Test2, Test3];
