@@ -29,4 +29,4 @@ export const Test3: ActionSecret = {
   org: OrgName.StackPath
 };
 
-export default [PulumiPassphraseSecret, Test2, Test3];
+export default [PulumiPassphraseSecret, Test3];
